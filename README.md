@@ -1,2 +1,2 @@
 # JFStack
-Java and MySQL
+Org + Emp + Dept services using Java and MySQL
