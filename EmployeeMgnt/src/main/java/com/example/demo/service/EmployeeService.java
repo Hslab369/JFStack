@@ -5,11 +5,11 @@ import java.util.List;
 import com.example.demo.entity.Employee;
 
 public interface EmployeeService {
-	Employee addData(Employee emp);
+	Employee addEmployee(Employee emp);
 
-	List<Employee> GetData();
+	List<Employee> getEmployees();
 
-	Employee updateData(Employee emp);
+	Employee updateEmployee(Employee emp);
 
-	void delete(int id);
+	void deleteEmployee(int id);
 }

@@ -26,29 +26,35 @@ public class EmployeeController {
 		this.empI = empI;
 	}
 
-	@GetMapping("/data")
-	public ResponseEntity<List<Employee>> data() {
-		List<Employee> l1 = empI.GetData();
+	@GetMapping("/displayEmp")
+	public ResponseEntity<List<Employee>> displayEmpEntity() {
+		List<Employee> l1 = empI.getEmployees();
 		return new ResponseEntity<>(l1, HttpStatus.OK);
 	}
 
-	@PostMapping("/save")
-	public ResponseEntity<Employee> dataadd(@RequestBody Employee emp) {
+	@PostMapping("/saveEmp")
+	public ResponseEntity<Employee> addEmpEntity(@RequestBody Employee emp) {
 		// TODO: process POST request
-		Employee e1 = empI.addData(emp);
+		Employee e1 = empI.addEmployee(emp);
 		return new ResponseEntity<>(e1, HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<Employee> updEntity(@PathVariable("id") int id, @RequestBody Employee emp) {
-		emp.setId(id);
-		Employee e1 = empI.updateData(emp);
+	@PutMapping("/Emp{id}")
+	public ResponseEntity<Employee> updateEmpEntity(@PathVariable("id") int id, @RequestBody Employee emp) {
+		emp.seteId(id);
+		Employee e1 = empI.updateEmployee(emp);
 		return new ResponseEntity<>(e1, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<String> detEntity(@PathVariable("id") int id) {
-		empI.delete(id);
+	@DeleteMapping("/Emp{id}")
+	public ResponseEntity<String> deleteEmpEntity(@PathVariable("id") int id) {
+		empI.deleteEmployee(id);
 		return new ResponseEntity<>("Data Deleted Sucessfully", HttpStatus.OK);
 	}
 }
+
+
+
+
+
+

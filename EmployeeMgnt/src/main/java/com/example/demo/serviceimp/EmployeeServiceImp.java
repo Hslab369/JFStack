@@ -2,6 +2,7 @@ package com.example.demo.serviceimp;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Employee;
@@ -11,39 +12,48 @@ import com.example.demo.service.EmployeeService;
 @Service
 public class EmployeeServiceImp implements EmployeeService {
 
-	EmployeeRepository empR;
-
-	public EmployeeServiceImp(EmployeeRepository empR) {
+	@Autowired
+	EmployeeRepository employeeRepository;
+	
+	public EmployeeServiceImp(EmployeeRepository employeeRepository) {
 		super();
-		this.empR = empR;
+		this.employeeRepository = employeeRepository;
 	}
 
 	@Override
-	public Employee addData(Employee emp) {
+	public Employee addEmployee(Employee emp) {
 		// TODO Auto-generated method stub
-		return empR.save(emp);
+		return employeeRepository.save(emp);
 	}
 
 	@Override
-	public List<Employee> GetData() {
-		// TODO Auto-generated method stub		List<Employee> l1 = 
-		return empR.findAll();
-	}
-
-	@Override
-	public Employee updateData(Employee emp) {
+	public List<Employee> getEmployees() {
 		// TODO Auto-generated method stub
-		Employee e1 = empR.findById(emp.getId()).get();
-		e1.setName(emp.getName());
-		e1.setSalary(emp.getSalary());
+		List<Employee> e1=employeeRepository.findAll();
+		return e1;
+	}
+
+	@Override
+	public Employee updateEmployee(Employee emp) {
+		// TODO Auto-generated method stub
+		Employee e1=employeeRepository.findById(emp.geteId()).get();
+		e1.setFirstName(emp.getFirstName());
+		e1.setLastName(emp.getLastName());
+		e1.setEmail(emp.getEmail());
+		e1.setAadharNo(emp.getAadharNo());
+		e1.setCity(emp.getCity());
+		e1.setMob(emp.getMob());
 		e1.setDept(emp.getDept());
-		return empR.save(e1);
+		e1.setOrg(emp.getOrg());
+		e1.setPanCard(emp.getPanCard());
+		e1.setSalary(emp.getSalary());
+		return e1;
 	}
 
 	@Override
-	public void delete(int id) {
+	public void deleteEmployee(int id) {
 		// TODO Auto-generated method stub
-		empR.deleteById(id);
+		employeeRepository.deleteById(id);
 	}
 
 }
